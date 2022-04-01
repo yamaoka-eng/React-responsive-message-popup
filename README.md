@@ -10,4 +10,5 @@
   ![image](https://user-images.githubusercontent.com/83505101/161191556-35a83ca6-ea2f-4f71-8d51-e4d9fb6212ec.png)
 
   3, 挂载组件
+  
   ![image](https://user-images.githubusercontent.com/83505101/161191697-6563aebb-fb76-4f3e-a7a8-0a40895465ff.png)
