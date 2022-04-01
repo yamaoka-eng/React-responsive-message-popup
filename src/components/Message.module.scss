@@ -1,0 +1,112 @@
+.message { 
+  @apply w-72 h-16 bg-white m-3 cursor-pointer rounded-md text-gray-500 flex flex-col relative overflow-hidden items-center justify-center;
+  animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940)
+}
+
+.out {
+  animation: slide-out 0.6s cubic-bezier(0.4, 0, 1, 1) both
+}
+
+.exit {
+  @apply absolute top-[0.2rem] right-3 hover:text-gray-800 hover:scale-110 transition-all
+}
+
+.content {
+  @apply flex w-full px-3 items-center text-xl
+}
+
+.msg {
+  @apply px-2 text-sm
+}
+
+.success {
+  @apply text-green-400
+}
+
+.error {
+  @apply text-red-600
+}
+
+.info {
+  @apply text-orange-500
+}
+
+.successProgress {
+  @apply w-full h-[0.34rem] bg-green-400 absolute bottom-0 left-0 transition-all duration-75
+}
+
+.errorProgress {
+  @apply w-full h-[0.34rem] bg-red-600 absolute bottom-0 left-0 transition-all duration-75
+}
+
+.infoProgress {
+  @apply w-full h-[0.34rem] bg-orange-500 absolute bottom-0 left-0 transition-all duration-75
+}
+
+@keyframes slide-in {
+  0% {
+    -webkit-transform: translateX(600px);
+            transform: translateX(600px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    -webkit-transform: translateX(68px);
+            transform: translateX(68px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  72% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  81% {
+    -webkit-transform: translateX(32px);
+            transform: translateX(32px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  90% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(-0.5rem);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(-1.5rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+}
