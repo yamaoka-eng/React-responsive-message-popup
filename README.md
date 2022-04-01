@@ -1,7 +1,7 @@
 # React-responsive-message-popup
 炫酷动画效果的弹窗，因react是单页面渲染，将弹窗直接挂载到body其他dom上，因此可以在你任何组件时都可以将弹窗弹出
 
-效果图:
+效果图(每个弹窗有自己的进度条):
 
 ![image](https://user-images.githubusercontent.com/83505101/161192783-36f614d9-5e1b-45a9-8229-b2c1200314e0.png)
 
