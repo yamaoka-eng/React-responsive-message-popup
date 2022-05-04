@@ -32,17 +32,21 @@ function useInterval(callback, delay) {
 
 const Message = ({ onClaer, type, msg, callBack }) => {
 
+  const progressTime = 5000
+
   const [out, setOut] = useState(false)
 
-  const [time , setTime] = useState(5000)
+  const [time , setTime] = useState(progressTime)
 
-  const [speed, setSpeed] = useState(50)
+  const [speed, setSpeed] = useState(75)
 
   useEffect(()=>{
     if (time <= 0) exit() 
   }, [time])
 
-  useInterval(()=>{setTime(time - 50)}, speed)
+  useInterval(()=>{
+    setTime(time - 75)
+  }, speed)
 
   const exit = () => {
     setOut(true)
@@ -64,7 +68,7 @@ const Message = ({ onClaer, type, msg, callBack }) => {
         { chooseIcon(type) }
         <span className={styles.msg}>{msg}</span>
       </div>
-      <div className={styles[type+'Progress']} style={{width: `${time/50}%`}}></div>
+      <div className={styles[type+'Progress']} style={{width: `${(time/progressTime)*100}%`}}></div>
     </div>
   )
 }
