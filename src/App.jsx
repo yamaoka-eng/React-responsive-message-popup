@@ -1,45 +1,16 @@
 import { useState } from 'react'
 import logo from './logo.svg'
-import './App.css'
 
 import Message from './components/Message'
 
-function App() {
-  const [count, setCount] = useState(0)
+import './App.css'
 
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p onClick={() => Message.onError('失败啦')}>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => {Message.onSuccess('成功啦');setCount((count) => count + 1)}}>
-            count is: {count}
-          </button>
-        </p>
-        <p onClick={() => Message.onInfo('lalala')}>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div className='App'>
+      <div className='error btn' onClick={()=>Message.onError('出错啦')}>错误弹窗</div>
+      <div className='success btn' onClick={()=>Message.onSuccess('成功啦')}>正确弹窗</div>
+      <div className='info btn' onClick={()=>Message.onInfo('不知道啦')}>信息弹窗</div>
     </div>
   )
 }
