@@ -6,6 +6,9 @@
 ![image](https://user-images.githubusercontent.com/83505101/161192783-36f614d9-5e1b-45a9-8229-b2c1200314e0.png)
 
 
+![轻弹窗_](https://user-images.githubusercontent.com/83505101/171813070-89fc1c0e-9e80-4a20-bd5e-58037d577a32.gif)
+
+
 实现原理：
 
   1, 在模板html文件中新增一个div元素用于挂载你的弹窗，并且设置样式，让元素脱离文档流
