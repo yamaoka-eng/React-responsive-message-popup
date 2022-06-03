@@ -10,49 +10,21 @@ const iconType = {
   info: 'info'
 }
 
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
-
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  });
-
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
 const Message = ({ onClaer, type, msg, callBack }) => {
 
-  const progressTime = 5000
+  const progressRef = useRef()
 
   const [out, setOut] = useState(false)
 
-  const [time , setTime] = useState(progressTime)
+  useEffect(() => progressRef.current.addEventListener("animationend",() => exit()), [])
 
-  const [speed, setSpeed] = useState(75)
-
-  useEffect(()=>{
-    if (time <= 0) exit() 
-  }, [time])
-
-  useInterval(()=>{
-    setTime(time - 75)
-  }, speed)
+  const playSpin = yes => progressRef.current.style.animationPlayState = ( yes ? "running" : 'paused' )
 
   const exit = () => {
     setOut(true)
     setTimeout(() => onClaer(), 1000)
   }
-
+  
   const chooseIcon = (type) => {
     switch (type) {
       case iconType.success: return <span className={styles[type]}><BsCheckCircleFill/></span>
@@ -62,13 +34,13 @@ const Message = ({ onClaer, type, msg, callBack }) => {
   }
 
   return (
-    <div className={`${styles.message} ${out && styles.out}`} onClick={callBack} onMouseMove={()=>setSpeed(null)} onMouseLeave={()=>setSpeed(50)}>
+    <div className={`${styles.message} ${out && styles.out}`} onClick={callBack} onMouseMove={()=>playSpin(false)} onMouseLeave={()=>playSpin(true)}>
       <div onClick={exit} className={styles.exit}>X</div>
       <div className={styles.content}>
         { chooseIcon(type) }
         <span className={styles.msg}>{msg}</span>
       </div>
-      <div className={styles[type+'Progress']} style={{width: `${(time/progressTime)*100}%`}}></div>
+      <div ref={progressRef} className={`${styles[type+'Progress']} ${styles.progress}`}></div>
     </div>
   )
 }
