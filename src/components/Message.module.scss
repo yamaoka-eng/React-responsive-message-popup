@@ -1,5 +1,5 @@
 .message { 
-  @apply w-72 h-16 bg-white m-3 cursor-pointer rounded-md text-gray-500 flex flex-col relative overflow-hidden items-center justify-center;
+  @apply w-72 h-16 bg-white m-3 border shadow-sm drop-shadow-lg cursor-pointer rounded-md text-gray-500 flex flex-col relative overflow-hidden items-center justify-center;
   animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
@@ -16,7 +16,7 @@
 }
 
 .msg {
-  @apply px-2 text-sm
+  @apply px-2 text-sm truncate
 }
 
 .success {
@@ -31,21 +31,21 @@
   @apply text-orange-500
 }
 
-.progress {
-  @apply w-full h-[0.34rem] absolute bottom-0 left-0;
-  animation: progress-ani 5s forwards;
+.success-progress {
+  @apply bg-green-400
 }
 
-.successProgress {
-  @apply bg-green-400 
+.error-progress {
+  @apply bg-red-600
 }
 
-.errorProgress {
-  @apply bg-red-600 absolute
-}
-
-.infoProgress {
+.info-progress {
   @apply bg-orange-500
+}
+
+[class*="progress"] {
+  @apply absolute w-full h-[0.34rem] bottom-0 left-0;
+  animation: progress-ani 5s forwards;
 }
 
 @keyframes slide-in {

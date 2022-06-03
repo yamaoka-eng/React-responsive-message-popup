@@ -8,7 +8,7 @@ import './App.css'
 function App() {
   return (
     <div className='App'>
-      <div className='error btn' onClick={()=>Message.onError('出错啦')}>错误弹窗</div>
+      <div className='error btn' onClick={()=>Message.onError('出错啦 Error:@#$%.....&%#@@#@$^')}>错误弹窗</div>
       <div className='success btn' onClick={()=>Message.onSuccess('成功啦')}>正确弹窗</div>
       <div className='info btn' onClick={()=>Message.onInfo('不知道啦')}>信息弹窗</div>
     </div>

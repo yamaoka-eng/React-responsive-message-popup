@@ -40,7 +40,7 @@ const Message = ({ onClaer, type, msg, callBack }) => {
         { chooseIcon(type) }
         <span className={styles.msg}>{msg}</span>
       </div>
-      <div ref={progressRef} className={`${styles[type+'Progress']} ${styles.progress}`}></div>
+      <div ref={progressRef} className={`${styles[type + '-progress']}`}></div>
     </div>
   )
 }
