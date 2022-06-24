@@ -3,7 +3,7 @@
 }
 
 .btn {
-  @apply p-4 bg-gray-400 rounded-lg text-gray-200
+  @apply p-4 bg-gray-400 rounded-lg text-white cursor-pointer select-none
 }
 
 .error {

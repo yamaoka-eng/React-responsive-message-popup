@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import ReactDOM from "react-dom"
+import PubSub from 'pubsub-js'
 import { BsCheckCircleFill, BsFillXCircleFill, BsInfoCircleFill } from "react-icons/bs"
 
 import styles from './Message.module.scss'
@@ -10,21 +11,26 @@ const iconType = {
   info: 'info'
 }
 
-const Message = ({ onClaer, type, msg, callBack }) => {
+var messageCount = -1
+
+const Message = ({ onClaer, type, msg, callBack, count }) => {
 
   const progressRef = useRef()
 
   const [out, setOut] = useState(false)
+  const [topCpunt, setTopCpunt] = useState(count)
 
-  useEffect(() => progressRef.current.addEventListener("animationend",() => exit()), [])
+  useEffect(() => progressRef.current.addEventListener("animationend", () => exit()), [])
+  useEffect(()=>{
+    var token = PubSub.subscribe('messageCount', (_, {index}) => {if (index < count) setTopCpunt(topCpunt - 1)} )
+    return ()=> PubSub.unsubscribe(token)
+  },[topCpunt])
 
   const playSpin = yes => progressRef.current.style.animationPlayState = ( yes ? "running" : 'paused' )
-
   const exit = () => {
     setOut(true)
-    setTimeout(() => onClaer(), 1000)
+    setTimeout(() => onClaer(count), 1000)
   }
-  
   const chooseIcon = (type) => {
     switch (type) {
       case iconType.success: return <span className={styles[type]}><BsCheckCircleFill/></span>
@@ -34,7 +40,7 @@ const Message = ({ onClaer, type, msg, callBack }) => {
   }
 
   return (
-    <div className={`${styles.message} ${out && styles.out}`} onClick={callBack} onMouseMove={()=>playSpin(false)} onMouseLeave={()=>playSpin(true)}>
+    <div className={`${styles.message} ${out && styles.out}`} style={{top: `${topCpunt * 5}rem`}} onClick={callBack} onMouseMove={()=>playSpin(false)} onMouseLeave={()=>playSpin(true)}>
       <div onClick={exit} className={styles.exit}>X</div>
       <div className={styles.content}>
         { chooseIcon(type) }
@@ -48,13 +54,17 @@ const Message = ({ onClaer, type, msg, callBack }) => {
 // type弹窗类型,可以根据不同类型,渲染不同类型弹窗的样式
 const MessageAPI = (type,msg,callBack) => {
 
+  messageCount += 1
+  
   const toastify = document.getElementById('toastify')
 	const msgBox = document.createElement('div')
   msgBox.className = 'toast'
 	toastify.appendChild(msgBox)
 
-	const onClaer = () => {
+	const onClaer = async (count) => {
 		if(!!msgBox){
+      messageCount -= 1
+      await PubSub.publish('messageCount', {index: count})
 			ReactDOM.unmountComponentAtNode(msgBox)
       msgBox.remove()
 		}
@@ -63,6 +73,7 @@ const MessageAPI = (type,msg,callBack) => {
 	ReactDOM.render(
 		<Message
 		 msg={msg}
+     count={messageCount}
      type={type}
      onClaer={onClaer}
      callBack={()=> !!callBack && callBack()}

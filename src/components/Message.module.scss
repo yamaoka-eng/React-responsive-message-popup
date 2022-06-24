@@ -1,5 +1,5 @@
 .message { 
-  @apply w-72 h-16 bg-white m-3 border shadow-sm drop-shadow-lg cursor-pointer rounded-md text-gray-500 flex flex-col relative overflow-hidden items-center justify-center;
+  @apply w-72 h-16 bg-white m-3 border shadow-sm drop-shadow-lg cursor-pointer rounded-md text-gray-500 flex flex-col overflow-hidden items-center justify-center transition-all duration-300 absolute top-0;
   animation: slide-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 

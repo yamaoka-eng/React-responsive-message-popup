@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-
 import Message from './components/Message'
 
 import './App.css'
