@@ -11,18 +11,13 @@ html, body, #root {
 }
 
 #toastify {
-  position: absolute;
-  top: 0rem;
-  right: 19rem;
-  z-index: 99;
-}
-
-.toast {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 88px;
   right: 0;
+  bottom: auto;
+  z-index: 9999;
+  transition: height 0.5s;
 }
-
 
 /* tailwindcss */
 @tailwind base;
